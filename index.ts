@@ -17,7 +17,7 @@ class Alipay {
   protected other_params: object = {}; // 请求参数的集合，最大长度不限，除公共参数外所有请求参数都必须放在这个参数中传递，具体参照各产品快速接入文档
   protected sandbox = false; // 是否启用沙箱 默认false 不启用
 
-  protected privateKey: any; // 密钥
+  protected privateKey: Buffer; // 密钥
   constructor(params: IAlipayPublic) {
     this.app_id = params.app_id;
     this.method = params.method || '';
@@ -32,15 +32,22 @@ class Alipay {
   }
   // 所以接口参数处理
   public allApi(params: object): string {
+    return this.init(params);
+  }
+  protected init(params: object): string {
     const ret: Isign = this.dealParams(params);
 
     // 加密
     const sign: string = this.rsaSign(ret.unencode, this.sign_type);
     const parameter = `${ret.encode}&sign=${encodeURIComponent(sign)}`;
-    return `${this.sandbox ? devUrl : url}?${parameter}`;
+    return this.isSandbox(parameter);
+  }
+  // 环境判断
+  private isSandbox(params: string) {
+    return `${this.sandbox ? devUrl : url}?${params}`;
   }
   // 参数处理
-  protected dealParams(params: any): Isign {
+  private dealParams(params: any): Isign {
     const map: any = {};
     for (const key in params) {
       if (!!params[key] && !publistParams.includes(key)) {
@@ -95,7 +102,9 @@ class Alipay {
     return {unencode, encode};
   }
   // 加密 处理
-  protected rsaSign(querystring: string, sign_type: string): string {
+  private rsaSign(querystring: string, sign_type: string): string {
+    if (!this.privateKey) throw new Error('缺少秘钥');
+
     let sign;
     if (sign_type === 'RSA') {
       sign = crypto.createSign('RSA-SHA1');
