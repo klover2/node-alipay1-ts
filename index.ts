@@ -142,7 +142,7 @@ class Alipay {
   }
   // 公钥加密 处理
   private publicKeySign(querystring: string, sign: string, sign_type: string): boolean {
-    if (!this.privateKey) throw new Error('缺少秘钥');
+    if (!this.privateKey) throw new Error('缺少公钥');
 
     let verify;
     if (sign_type.toUpperCase() === 'RSA2') {
