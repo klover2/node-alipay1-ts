@@ -37,11 +37,8 @@ export const publistParams: string[] = [
 // 公共参数
 export interface IAlipayPublic {
   app_id: string;
-  method: string;
   sign_type?: string;
   timestamp: string;
-  return_url?: string;
-  notify_url?: string;
   app_auth_token?: string;
   privateKey: Buffer;
   sandbox?: boolean; // 是否启用沙箱 默认false 不启用
@@ -87,6 +84,8 @@ export interface IGoodsDetail {
 
 // 手机网站支付接口2.0 请求参数
 export interface IWapPay {
+  return_url?: string;
+  notify_url?: string;
   body?: string;
   subject: string;
   out_trade_no: string;
