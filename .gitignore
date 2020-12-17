@@ -1,0 +1,5 @@
+node_modules
+dist
+test
+lib/*.js
+lib/*.d.ts
