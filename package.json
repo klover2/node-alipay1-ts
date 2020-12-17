@@ -1,6 +1,6 @@
 {
   "name": "node-alipay1",
-  "version": "0.0.1-development",
+  "version": "0.0.1-development.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

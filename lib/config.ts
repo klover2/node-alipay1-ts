@@ -30,17 +30,19 @@ export const publistParams: string[] = [
   'timestamp',
   'version',
   'notify_url',
+  'return_url',
   'app_auth_token',
   'other_params',
+  'privateKey',
+  'publicKey',
 ];
 
 // 公共参数
 export interface IAlipayPublic {
   app_id: string;
   sign_type?: string;
-  timestamp: string;
-  app_auth_token?: string;
   privateKey: Buffer;
+  publicKey: Buffer;
   sandbox?: boolean; // 是否启用沙箱 默认false 不启用
 }
 // 加密参数
@@ -86,6 +88,9 @@ export interface IGoodsDetail {
 export interface IWapPay {
   return_url?: string;
   notify_url?: string;
+  timestamp?: string;
+  app_auth_token?: string;
+
   body?: string;
   subject: string;
   out_trade_no: string;
