@@ -7,7 +7,7 @@
 const Alipay = require('node-alipay1') 或者 import Alipay from 'node-alipay1'
 
 const alipay = new Alipay({
-  app_id: '	2014072300007148',
+  app_id: '2014072300007148',
   privateKey: fs.readFileSync(__dirname + '/private_key.pem'),
   publicKey: fs.readFileSync(__dirname + '/public_key.pem'),
   sign_type: 'RSA',
@@ -36,7 +36,7 @@ const alipay = new Alipay({
 ```bash
 // method 接口名称
 // params 包括支付宝当前接口请求参数 + 当前接口公共参数中的（notify_url,notify_url,timestamp,app_auth_token）
-// 安装支付宝接口说明文档 非必须参数可以不填
+// 按照支付宝接口说明文档 非必须参数可以不填
 // let url = alipay.allApi(method, params)
 ```
 使用如下
@@ -47,11 +47,11 @@ notify_url： '', // HTTP/HTTPS开头字符串 可以不填
 timestamp: '2014-07-24 03:07:50' // 	发送请求的时间，格式"yyyy-MM-dd HH:mm:ss" 可以不填
 app_auth_token： ''，// 详见应用授权概述 可以不填
 
-// 请求参数 可选可以不用 如下
+// 请求参数 如下（请求参数中可选可以不填）
 subject： '大乐透', 
 out_trade_no: '70501111111S001111119',
 total_amount: 0.01,
-quit_url: '	http://www.taobao.com/product/113714.html',
+quit_url: 'http://www.taobao.com/product/113714.html',
 product_code: 'QUICK_WAP_WAY'
 })
 ```
@@ -64,6 +64,8 @@ product_code: 'QUICK_WAP_WAY'
 const result = alipay.callback_check(params); 
 // result = true 验签成功
 ```
+
+只需要支付请看: `https://blog.csdn.net/weixin_43110609/article/details/111361082`
 
 ## 文档
 [支付宝文档](https://opendocs.alipay.com/apis/api_1/alipay.trade.wap.pay?scene=common)
