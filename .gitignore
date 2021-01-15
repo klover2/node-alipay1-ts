@@ -3,3 +3,4 @@ dist
 test
 lib/*.js
 lib/*.d.ts
+.vscode/*
