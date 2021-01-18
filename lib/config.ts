@@ -66,6 +66,8 @@ export const publistParams: string[] = [
   'privateKey',
   'publicKey',
   'auth_token',
+  'alipay_root_cert_sn',
+  'app_cert_sn',
 ];
 
 // 公共参数
@@ -73,9 +75,14 @@ export interface IAlipayPublic {
   app_id: string;
   sign_type?: string;
   privateKey: Buffer;
-  publicKey: Buffer;
   sandbox?: boolean; // 是否启用沙箱 默认false 不启用
+  // 普通公钥方式
+  publicKey?: Buffer;
+  // 公钥证书
+  appCertPublicKey?: Buffer; // 应用公钥证书
+  alipayRootCert?: Buffer; // 支付宝根证书
 }
+
 // 加密参数
 export interface Isign {
   encode: string;
