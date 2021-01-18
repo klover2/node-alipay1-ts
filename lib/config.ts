@@ -65,6 +65,7 @@ export const publistParams: string[] = [
   'other_params',
   'privateKey',
   'publicKey',
+  'auth_token',
 ];
 
 // 公共参数

@@ -16,6 +16,7 @@ class Alipay {
   private timestamp = ''; // 发送请求的时间，格式"yyyy-MM-dd HH:mm:ss"
   private notify_url = ''; // 支付宝服务器主动通知商户服务器里指定的页面http/https路径。
   private app_auth_token = '';
+  private auth_token = '';
 
   private other_params: object = {}; // 请求参数的集合，最大长度不限，除公共参数外所有请求参数都必须放在这个参数中传递，具体参照各产品快速接入文档
 
@@ -46,7 +47,7 @@ class Alipay {
       })
       .join('&');
 
-    const signType = _params['sign_type'] || '';
+    const signType = _params['sign_type'] || this.sign_type;
     const sign = _params['sign'] || '';
     return this.publicKeySign(unencode, sign, signType);
   }
@@ -58,6 +59,7 @@ class Alipay {
     this.return_url = params.return_url || '';
     this.timestamp = params.timestamp || getNowFormatDate();
     this.app_auth_token = params.app_auth_token || '';
+    this.auth_token = params.auth_token || '';
 
     const ret: Isign = this.dealParams(params);
 
@@ -101,6 +103,7 @@ class Alipay {
       ...(this.notify_url && {notify_url: this.notify_url}),
       ...(this.return_url && {return_url: this.return_url}),
       ...(this.app_auth_token && {app_auth_token: this.app_auth_token}),
+      ...(this.auth_token && {auth_token: this.auth_token}),
       sign: '',
       ...this.other_params,
     };
