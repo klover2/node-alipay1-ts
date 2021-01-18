@@ -6,13 +6,25 @@
 ```bash
 const Alipay = require('node-alipay1') 或者 import Alipay from 'node-alipay1'
 
+# 普通公钥方式
 const alipay = new Alipay({
   app_id: '2014072300007148',
-  privateKey: fs.readFileSync(__dirname + '/private_key.pem'),
-  publicKey: fs.readFileSync(__dirname + '/public_key.pem'),
-  sign_type: 'RSA',
+  privateKey: fs.readFileSync(__dirname + '/private_key.pem'), # 秘钥
+  publicKey: fs.readFileSync(__dirname + '/public_key.pem'), # 支付宝生成的支付宝公钥
+  sign_type: 'RSA', # 支付RSA2 以你生成的证书方式为准
   sandbox: false,
 });
+
+# 公钥证书方式
+const alipay = new Alipay({
+  app_id: '2014072300007148',
+  privateKey: fs.readFileSync(__dirname + '/private_key.pem'), # 秘钥
+  appCertPublicKey: fs.readFileSync(__dirname + '/appCertPublicKey.crt'), # 支付宝生成的应用公钥证书
+  alipayRootCert: fs.readFileSync(__dirname + '/alipayRootCert.crt'), # 支付宝生成的支付宝根证书
+  sign_type: 'RSA2', // 和证书有关
+  sandbox: false,
+});
+
 ```
 * 参数介绍
 

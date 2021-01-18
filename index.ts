@@ -25,7 +25,7 @@ class Alipay {
   private publicKey?: Buffer; // 公钥 支付宝开发平台生成的 alipay_public_key
   private privateKey: Buffer; // 密钥
 
-  private appCertPublicKey?: Buffer; // 应用公钥证书
+  // private appCertPublicKey?: Buffer; // 应用公钥证书
   private appCertPublicKeySn?: string; // 应用公钥证书 md5(序列号 + name)
   private alipayRootCert?: Buffer; // 支付宝根证书
   private alipayRootCertSn?: string; // 支付宝根证书md5(序列号 + name)
@@ -36,12 +36,12 @@ class Alipay {
     this.privateKey = params.privateKey;
     // 公钥模式
     if (params.alipayRootCert) {
-      this.appCertPublicKey = params.appCertPublicKey;
+      this.publicKey = params.appCertPublicKey;
       this.alipayRootCert = params.alipayRootCert;
       // 获取序列号
-      if (!this.appCertPublicKey) throw new Error('缺少应用公钥证书');
+      if (!this.publicKey) throw new Error('缺少应用公钥证书');
       if (!this.alipayRootCert) throw new Error('缺少支付宝根证书');
-      this.appCertPublicKeySn = this.getSN(this.appCertPublicKey, false);
+      this.appCertPublicKeySn = this.getSN(this.publicKey, false);
       this.alipayRootCertSn = this.getSN(this.alipayRootCert, true);
     } else {
       // 普通公钥模式
