@@ -79,5 +79,19 @@ const result = alipay.callback_check(params);
 
 只需要支付请看: `https://blog.csdn.net/weixin_43110609/article/details/111361082`
 
+* 注意
+1. private_key.pem 文件格式 不管你是RSA 还是 RSA2
+```bash
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAofPgYRP7U73LU5X... # 可以放在一行
+-----END RSA PRIVATE KEY-----
+```
+2. public_key.pem 文件格式
+```bash
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ... # 可以放在一行
+-----END PUBLIC KEY-----
+```
+
 ## 文档
 [支付宝文档](https://opendocs.alipay.com/apis/api_1/alipay.trade.wap.pay?scene=common)
