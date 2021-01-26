@@ -1,6 +1,6 @@
 {
   "name": "node-alipay1",
-  "version": "1.0.2-beta",
+  "version": "1.0.3-beta",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,6 +16,14 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klover2/node-alipay1-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/klover2/node-alipay1-ts/issues"
+  },
+  "homepage": "https://github.com/klover2/node-alipay1-ts#readme",
   "author": "klover",
   "license": "ISC",
   "devDependencies": {
